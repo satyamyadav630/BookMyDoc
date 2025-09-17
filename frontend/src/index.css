@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    font-family:Outfit;
+}
+
+
+.active hr{
+    @apply block
+}
+::-webkit-scrollbar{
+    @apply hidden
+}
+
+/* @media(max-width:740px){
+    @apply text-white bg-primary
+}  */
+ /* @media (max-width: 740px) {
+  .my-div {
+    color: white;
+    background-color: #0f9d58;
+  }
+} */
+ /* @media (max-width:740px) {
+  .nav-active {
+    @apply bg-primary text-white;
+  }
+} */
