@@ -11,6 +11,13 @@ function AiRecommendationPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
+// hey buddy checking git working
+
+
+
+
     setLoading(true);
 
     try {
