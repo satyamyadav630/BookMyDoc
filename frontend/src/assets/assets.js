@@ -93,7 +93,7 @@ export const doctors = [
     degree: "MBBS",
     experience: "4 Years",
     about:
-      "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
+      "Dr.Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
     fees: 50,
     address: {
       line1: "17th Cross, Richmond",
@@ -102,7 +102,7 @@ export const doctors = [
   },
   {
     _id: "doc2",
-    name: "Dr. Ritesh Aggrawal",
+    name: "Dr.Ritesh Aggrawal",
     image: doc2,
     speciality: "Gynecologist",
     degree: "MBBS",
