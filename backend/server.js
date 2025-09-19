@@ -12,6 +12,8 @@ const app = express();
 const port = 4000;
 connectDB()
 connectCloudinary();
+app.use(express.urlencoded({ extended: true }));
+
 
 
 // middleware

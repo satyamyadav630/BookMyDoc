@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import { v2 as cloudinary } from 'cloudinary';
 
 import doctorModel from '../models/doctorModel.js'
-
+import jwt from 'jsonwebtoken';
 
 
 
@@ -15,11 +15,11 @@ const{name, email, password, speciality, degree, experience, about, fees, addres
 const imageFile = req.file
 
 
-  // 👇 STEP 1: Check body aur file aayi ki nahi
-    console.log("🟢 Req.body:", req.body);
-    console.log("🟢 Req.file:", req.file);
+  // // 👇 STEP 1: Check body aur file aayi ki nahi
+  //   console.log("🟢 Req.body:", req.body);
+  //   console.log("🟢 Req.file:", req.file);
 
-      console.log("🟢 Cloudinary ENV:", process.env.CLOUDINARY_NAME, process.env.CLOUDINARY_API_KEY);
+  //     console.log("🟢 Cloudinary ENV:", process.env.CLOUDINARY_NAME, process.env.CLOUDINARY_API_KEY);
 
 // checking for all data for doctor 
 if(!name || !email || !password || !speciality || !degree || !experience || !about || !fees || !address){
@@ -39,7 +39,7 @@ if(password.length < 8){
 return res.json({success:false,message:" please enter a strong password"})
 }
 
-console.log("🟢 Uploading to Cloudinary:", imageFile?.path);
+// console.log("🟢 Uploading to Cloudinary:", imageFile?.path);
 
 // hasing doctor password
 const salt = await bcrypt.genSalt(10)
@@ -75,4 +75,27 @@ res.json({success:false,message:error.message})
 }
 
 }
-export{addDoctor}
+
+// api for admin login
+const loginAdmin = async(req,res)=>{
+try{
+
+const {email,password}=req.body
+if(email === process.env.ADMIN_EMAIL && password ===process.env.ADMIN_PASSWORD){
+
+  const token = jwt.sign(email+password,process.env.JWT_SECRET)
+  res.json({success:true,token})
+
+}else{
+  res.json({success:false,message:"Invalid credantials"})
+}
+
+
+}catch(error){
+console.log("❌ Add Doctor Error:", error); 
+res.json({success:false,message:error.message})
+
+}
+
+}
+export{addDoctor,loginAdmin}
