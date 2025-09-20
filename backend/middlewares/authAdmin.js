@@ -5,7 +5,7 @@ import jwt from'jsonwebtoken'
 const authAdmin =async(req,res,next)=>{
     try {
 
-const {atoken}= req.headers
+const {atoken}= req.headers;
 if(!atoken){
     return res.json({success:false,message:'Not Autorized login again'})
 }
@@ -27,3 +27,29 @@ next()
 }
 
 export default authAdmin
+
+
+// import jwt from 'jsonwebtoken';
+
+// const authAdmin = async (req, res, next) => {
+//     try {
+//         const token = req.headers// backend me lowercase header
+//         if (!token) {
+//             return res.json({ success: false, message: 'Not Authorized login again' });
+//         }
+
+//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+//         // check payload
+//         if (decoded.email !== process.env.ADMIN_EMAIL) {
+//             return res.json({ success: false, message: 'Not Authorized login again' });
+//         }
+
+//         next();
+//     } catch (error) {
+//         console.log(error);
+//         res.json({ success: false, message: error.message });
+//     }
+// };
+
+// export default authAdmin;

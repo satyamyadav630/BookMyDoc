@@ -5,6 +5,7 @@ import { v2 as cloudinary } from 'cloudinary';
 
 import doctorModel from '../models/doctorModel.js'
 import jwt from 'jsonwebtoken';
+// import { Suspense } from 'react';
 
 
 
@@ -98,4 +99,19 @@ res.json({success:false,message:error.message})
 }
 
 }
-export{addDoctor,loginAdmin}
+// api to get all doctor list for admin pannel 
+
+const allDoctor = async(req,res) =>{
+  try {
+
+    const doctor = await doctorModel.find({}).select('-password')
+    res.json({success:true,doctor})
+    
+  } catch (error) {
+    console.log(error)
+    res.json({success:false, message:error.message})
+    
+  }
+}
+
+export{addDoctor,loginAdmin,allDoctor}
