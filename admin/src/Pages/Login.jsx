@@ -13,7 +13,7 @@ const Login = () => {
     const [state, setState] = useState('Admin')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    // const [aToken, setAToken] = useState(() => localStorage.getItem('aToken') || '');
 
     const { setAToken, backendUrl } = useContext(AdminContext)
 
@@ -25,15 +25,19 @@ const Login = () => {
                 const { data } = await axios.post(backendUrl + '/api/admin/login', { email, password })
                 if (data.success) {
                     console.log(data.token);
-                     toast.success("Login successful!");
-                     setAToken(data.token); 
-                } else{
-                      toast.error(data.message)
+                    toast.success("Login successful!");
+                    setAToken(data.token);
+                    //  new 
+                    localStorage.setItem('aToken', data.token);
+                } else {
+                    toast.error(data.message)
                 }
 
-            }else{
+            } else {
+                console.error(error);
+                toast.error(error.response?.data?.message || "Something went wrong!");
 
-              
+
             }
 
         } catch (error) {
@@ -54,10 +58,10 @@ const Login = () => {
                 <div className='w-full'>
                     <p>Email</p>
                     <input onChange={(e) => setEmail(e.target.value)}
-                     value={email} 
-                     className='border border-[#DADADA] rounded w-full p-2 mt-1'
-                      type='email'
-                       required />
+                        value={email}
+                        className='border border-[#DADADA] rounded w-full p-2 mt-1'
+                        type='email'
+                        required />
                 </div>
 
                 <div className='w-full'>
