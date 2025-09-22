@@ -1,3 +1,5 @@
+// import { doctors } from "../../frontend/src/assets/assets.js";
+// import { doctors } from "../../frontend/src/assets/assets.js";
 import doctorModel from "../models/doctorModel.js";
 
 const changeAvailability = async (req, res) => {
@@ -14,10 +16,11 @@ res.json({success:true,message:'Availablity Changed'})
   }
 };
 
-const doctorList  = async(req,res)=> {
+const doctorList  = async (req,res)=> {
   try {
-    const doctor = await doctorModel.find({}).select(['-password','-email'])
-    res.json({success:true,doctor})
+
+    const doctors = await doctorModel.find({}).select(['-password','-email'])
+    res.json({success:true,doctors})
 
   } catch (error) {
     

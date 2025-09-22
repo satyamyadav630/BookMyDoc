@@ -1,23 +1,38 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // import { assets } from '../assets/assets'
 import { NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { AppContext } from "../Context/AppContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const [token, setToken] = useState(true);
+  // const [token, setToken] = useState(true);
+  const { token, setToken } = useContext(AppContext)
+
+
+const logout =()=>{
+  setToken(false)
+  localStorage.removeItem('token')
+}
+
+
+
+
+
+
+
 
   return (
     <div className="flex h-20 items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
-      <img className=' h-16 w-24 cursor-pointer object-contain' src={assets.logo}/>
+      {/* <img className=' h-16 w-24 cursor-pointer object-contain' src={assets.logo}/> */}
       {/* logo */}
-      {/* <h1 className="text-2xl md:text-3xl font-bold">
+      <h1 className="text-2xl md:text-3xl font-bold">
         <span className="text-orange-500 font-sans">Book</span>
 
         <span className="text-orange-500 font-sans">My</span>
         <span className="text-green-500 font-serif ">Doc</span>
-      </h1> */}
+      </h1>
       <ul className="hidden md:flex items-start gap-5 font-medium">
         <NavLink to="/">
           <li className="py-1 ">HOME</li>
@@ -65,7 +80,7 @@ const Navbar = () => {
                   My Appointments
                 </p>
                 <p
-                  onClick={() => setToken(false)}
+                  onClick={logout}
                   className="hover:text-black cursor-pointer"
                 >
                   Logout
@@ -81,57 +96,56 @@ const Navbar = () => {
             Create account
           </button>
         )}
-        <img onClick={()=> setShowMenu(true)} className="w-6 md:hidden" src={assets.menu_icon} alt="" />
-              {/* mobile menu   */}
-              <div className={` ${showMenu ? 'fixed w-full': 'h-0 w-0'} md:hidden right-0 top-0  bottom-0 z-20 overflow-hidden bg-white transition-all`}>
-                <div className="flex items-center justify-between px-5 py-6">
-                  <img className="w-36 h-20" src={assets.logo} alt="" />
-                  <img className="w-7" onClick={()=> setShowMenu(false)} src={assets.cross_icon} alt="" />
-                </div>
-                <ul className="flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium">
-                  <NavLink
-  onClick={() => setShowMenu(false)}
-  to="/"
-  className={({ isActive }) =>
-    `px-4 rounded inline-block ${
-      isActive ? "bg-primary text-white" : ""
-    }`
-  }
->
-  HOME
-</NavLink>
-                 <NavLink
-  onClick={() => setShowMenu(false)}
-  to="/doctors"
-  className={({ isActive }) =>
-    `px-4 rounded inline-block ${isActive ? "bg-primary text-white" : ""}`
-  }
->
-  All DOCTORS
-</NavLink>
+        <img onClick={() => setShowMenu(true)} className="w-6 md:hidden" src={assets.menu_icon} alt="" />
+        {/* mobile menu   */}
+        <div className={` ${showMenu ? 'fixed w-full' : 'h-0 w-0'} md:hidden right-0 top-0  bottom-0 z-20 overflow-hidden bg-white transition-all`}>
+          <div className="flex items-center justify-between px-5 py-6">
+            <img className="w-36 h-20" src={assets.logo} alt="" />
+            <img className="w-7" onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="" />
+          </div>
+          <ul className="flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium">
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/"
+              className={({ isActive }) =>
+                `px-4 rounded inline-block ${isActive ? "bg-primary text-white" : ""
+                }`
+              }
+            >
+              HOME
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/doctors"
+              className={({ isActive }) =>
+                `px-4 rounded inline-block ${isActive ? "bg-primary text-white" : ""}`
+              }
+            >
+              All DOCTORS
+            </NavLink>
 
-<NavLink
-  onClick={() => setShowMenu(false)}
-  to="/about"
-  className={({ isActive }) =>
-    `px-4 rounded inline-block ${isActive ? "bg-primary text-white" : ""}`
-  }
->
-  ABOUT
-</NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/about"
+              className={({ isActive }) =>
+                `px-4 rounded inline-block ${isActive ? "bg-primary text-white" : ""}`
+              }
+            >
+              ABOUT
+            </NavLink>
 
-<NavLink
-  onClick={() => setShowMenu(false)}
-  to="/contact"
-  className={({ isActive }) =>
-    `px-4 rounded inline-block ${isActive ? "bg-primary text-white" : ""}`
-  }
->
-  CONTACT
-</NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/contact"
+              className={({ isActive }) =>
+                `px-4 rounded inline-block ${isActive ? "bg-primary text-white" : ""}`
+              }
+            >
+              CONTACT
+            </NavLink>
 
-                </ul>
-              </div>
+          </ul>
+        </div>
       </div>
     </div>
   );

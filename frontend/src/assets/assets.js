@@ -179,7 +179,7 @@ export const doctors = [
     _id: "doc7",
     name: "Dr. Safkat Rusa",
     image: doc7,
-    speciality: "General physician",
+    speciality: "Gastroenterologist",
     degree: "MBBS",
     experience: "4 Years",
     about:
